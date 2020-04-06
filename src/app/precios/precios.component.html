@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-8">
+            <h3>Precios</h3>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let precio of precios" (click)="editarPrecio(precio)"> {{ precio.nombre}}</li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h3>Agregar/Editar</h3>
+            <form [formGroup]="formularioPrecio">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" formControlName="nombre" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Costo</label>
+                    <input type="text" formControlName="costo" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Duración</label>
+                    <input type="text" formControlName="duracion" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Tipo Duración</label>
+                    <select class="form-control" formControlName="tipoDuracion">
+                        <option value="1">Dia</option>
+                        <option value="2">Semana</option>
+                        <option value="3">Quincena</option>
+                        <option value="4">Mes</option>
+                        <option value="5">Año</option>
+                    </select>
+                </div>
+                <button *ngIf="!esEditar" [disabled]="formularioPrecio.invalid" class="btn btn-primary mr-2" (click)="agregar()">Agregar</button>
+                <button *ngIf="esEditar" [disabled]="formularioPrecio.invalid" class="btn btn-danger" (click)="editar()">Editar</button>
+            </form>
+        </div>
+    </div>
+</div>
